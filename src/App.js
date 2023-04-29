@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { sidebarList } from './config/constant'
+import SidebarComponent from "./components/Sidebar";
+import Expenses from "./pages/Expenses";
+import AddExpense from './pages/Expenses/AddExpense';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flexbox">
+      
+      <SidebarComponent sidebarList={sidebarList} />
+      <div className="layout-container">
+      <Routes>
+          <Route path={"/"} element={<Expenses />} />
+       
+          <Route path={"/:operation"} element={<AddExpense />}/>
+
+          <Route path={"/:operation/:id"} element={<AddExpense />} />
+            
+          <Route path={"/analytics"} element={"Analytics Page!"} />
+          
+          <Route path={"*"} element={"Invalid URL"} />            
+        </Routes>
+        
+      </div>
     </div>
   );
 }
